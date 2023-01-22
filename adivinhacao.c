@@ -17,13 +17,15 @@ int main(int argc, char const *argv[])
     scanf("%d", &chute);
     printf("Seu chute foi %d!\n", chute);
 
-    if(chute == numsecreto){
+    int acertou = chute == numsecreto;
+
+    if(acertou){
         printf("Parabéns! Você acertou!");
     } else{        
-        if (chute > numsecreto){
+        int maior = chute >numsecreto;
+        if (maior){
             printf("Seu chute foi maior que o número secreto!\n");
-        }
-        if (chute < numsecreto){
+        } else {
             printf("Seu chute foi menor que o número secreto!\n");
         }        
     }
