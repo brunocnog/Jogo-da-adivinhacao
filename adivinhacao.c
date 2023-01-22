@@ -19,6 +19,15 @@ int main(int argc, char const *argv[])
         scanf("%d", &chute);
         printf("Seu %d° chute foi %d!\n", i, chute);
 
+        //verificando se o jogador digitou um número negativo
+        int negativo = chute < 0;
+
+        if(negativo){
+            printf("Você não pode chutar números negativos!\n\n");
+            i--;
+            //continue;
+        }
+
         //verificando se o jogador acertou, se o chute e maior o menor que o número secreto
         int acertou = chute == numsecreto;
         int maior = chute > numsecreto;
