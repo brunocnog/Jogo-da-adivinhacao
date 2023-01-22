@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h> 
+#include <locale.h>
+
+#define NUMERO_DE_TENTATIVAS 3
 
 int main(int argc, char const *argv[])
 {
@@ -12,7 +14,7 @@ int main(int argc, char const *argv[])
 
     int numsecreto=42, chute;
     
-    for (int i = 1; i <= 3; i++){ //jogador tem 3 chances de acertar
+    for (int i = 1; i <= NUMERO_DE_TENTATIVAS; i++){ //jogador tem 3 chances de acertar
         printf("Qual é o seu %d° chute? ", i);
         scanf("%d", &chute);
         printf("Seu %d° chute foi %d!\n", i, chute);
