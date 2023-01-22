@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <locale.h>
 
 int main(int argc, char const *argv[])
@@ -10,8 +11,26 @@ int main(int argc, char const *argv[])
     printf("* Bem-vindo ao Jogo da Adivinhação *\n");
     printf("************************************\n");
 
-    int numsecreto=42, chute, tentativas=1;
+    int numsecreto, chute, tentativas = 1;
+    double pontos = 1000;
+
+    //Calculando de forma randômica o número secreto
+    srand(time(0));
+    numsecreto = rand() % 100;
+
+    //mostrando o número secreto para efeitos de teste durante a criação do jogo
+    printf("%d\n\n", numsecreto);
+
+    /*
+    O código acima poderia ser feito da seguinte forma, para ser mais didático
     
+    int segundos = time(0);
+    srand(segundos);
+    
+    int numerogrande = rand();
+    numerosecreto = numerogrande % 100;
+    */
+        
     while (1){
         printf("Qual é o seu %d° chute? ", tentativas);
         scanf("%d", &chute);
@@ -32,7 +51,7 @@ int main(int argc, char const *argv[])
         int menor = chute < numsecreto;
                 
         if(acertou){ 
-            printf("Parabéns! Você acertou!\n\n");
+            printf("Parabéns! você acertou!\n\n");
             break;
         }
         if(maior){        
@@ -43,10 +62,17 @@ int main(int argc, char const *argv[])
             printf("Seu chute foi menor que o número secreto!\n");
             printf("Tente Novamente!!\n\n");
             }
+        
+        //calculando a pontuação do jogador a cada rodada
+        double pontosperditos = abs(chute - numsecreto) / 2.0; // poderia ser usado (double)2
+        pontos = pontos - pontosperditos;
+        
         tentativas++;  
         }
     printf("Você chutou %d vezes até acertar.\n", tentativas);
+    printf("Você fez %.2f pontos.\n", pontos);
     printf("Fim de Jogo!\n");
+
     return 0;
 }
 
