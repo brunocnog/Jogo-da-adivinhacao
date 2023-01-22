@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <locale.h>
 
-#define NUMERO_DE_TENTATIVAS 3
-
 int main(int argc, char const *argv[])
 {
     setlocale(LC_ALL,"Portuguese");
@@ -12,23 +10,23 @@ int main(int argc, char const *argv[])
     printf("* Bem-vindo ao Jogo da Adivinhação *\n");
     printf("************************************\n");
 
-    int numsecreto=42, chute;
+    int numsecreto=42, chute, tentativas=1;
     
-    for (int i = 1; i <= NUMERO_DE_TENTATIVAS; i++){
-        printf("Qual é o seu %d° chute? ", i);
+    while (1){
+        printf("Qual é o seu %d° chute? ", tentativas);
         scanf("%d", &chute);
-        printf("Seu %d° chute foi %d!\n", i, chute);
-
+        
         //verificando se o jogador digitou um número negativo
         int negativo = chute < 0;
 
         if(negativo){
             printf("Você não pode chutar números negativos!\n\n");
-            i--;
-            //continue;
+            continue;
         }
 
-        //verificando se o jogador acertou, se o chute e maior o menor que o número secreto
+        printf("Seu %d° chute foi %d!\n", tentativas, chute);    
+
+        //verificando se o jogador acertou, se o chute e maior o menor que o número secreto        
         int acertou = chute == numsecreto;
         int maior = chute > numsecreto;
         int menor = chute < numsecreto;
@@ -44,8 +42,10 @@ int main(int argc, char const *argv[])
         if(menor){                
             printf("Seu chute foi menor que o número secreto!\n");
             printf("Tente Novamente!!\n\n");
-            }        
+            }
+        tentativas++;  
         }
+    printf("Você chutou %d vezes até acertar.\n", tentativas);
     printf("Fim de Jogo!\n");
     return 0;
 }
