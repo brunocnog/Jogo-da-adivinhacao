@@ -51,8 +51,7 @@ int main(int argc, char const *argv[])
             
     for (int i = 1; i <= totTentativas; i++){
         printf("Tentativa %d de %d\n", i, totTentativas);
-        printf("Qual é o seu %d° chute?\n", i);
-        printf("Chute: ");
+        printf("Chute um número: ");
         scanf("%d", &chute);
         
         //verificando se o jogador acertou, se o chute e maior o menor que o número secreto        
